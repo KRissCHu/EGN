@@ -10,12 +10,13 @@ namespace HowTo
     {
         static void Main(string[] args)
         {
+            
             //8406194582 - 1984
             //7552011038 - 2075
             //7524169268 - 1875
 
 
-            string myEgn = "9712064404";
+            string myEgn = "7524169268";
             int years = int.Parse(myEgn.Substring(0, 2));
             int months = int.Parse(myEgn.Substring(2, 2));
             int days = int.Parse(myEgn.Substring(4, 2));
@@ -30,27 +31,51 @@ namespace HowTo
 
             if(months > 0 && months < 13)
             {
-                Console.WriteLine("19" + years);
+                Console.Write("19" + years);
+                Console.WriteLine(".{0}.{1}", months, days);
             }
 
-            if (months > 19 && months < 33)
+            else if (months > 19 && months < 33)
             {
-                Console.WriteLine("18" + years);
+                months -= 20;
+                Console.Write("18" + years);
+                Console.WriteLine(".{0}.{1}", months, days);
             }
 
-            /*int counter = 1;
-            for(int i = 20; i < 33; i++)
+            else if(months > 40 && months <53)
             {
-                Console.WriteLine(counter + " => " + i);
-                counter++;
-            }*/
+                months -= 40;
+                Console.Write("20" + years);
+                Console.WriteLine(".{0}.{1}", months, days);
+            }
 
-            if(months > 40 && months <53)
+            else
             {
-                Console.WriteLine("20" + years);
+                Console.WriteLine("Wrong Data!");
             }
 
 
+            CheckDigitWeight(myEgn);
+
+
+        }
+
+        //2 4 8 5 10 9 7 3 6
+        public static void CheckDigitWeight(string egn)
+        {
+            int [] digits = new int[egn.Length];
+
+            int currentsum = (digits[0] * 2) + (digits[1] * 4) + (digits[2] * 8) + (digits[3] * 5) + (digits[4] * 10) + (digits[5] * 9) + (digits[6] * 7) + (digits[7] * 3) + (digits[8] * 6);
+
+            currentsum = currentsum % 11;
+            if(currentsum != digits[9])
+            {
+                Console.WriteLine("Wrong EGN!");
+            }
+            else
+            {
+
+            }
 
         }
 
